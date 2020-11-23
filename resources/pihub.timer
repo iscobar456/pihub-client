@@ -2,7 +2,7 @@
 Description=Runs the pihub.service every 10 minutes
 
 [Timer]
-OnCalendar=*:*
+OnCalendar=*:*/20
 Unit=pihub.service
 
 [Install]
