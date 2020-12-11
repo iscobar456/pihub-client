@@ -1,16 +1,20 @@
 #!/bin/bash
 
-cd /opt/pihub/
+cd /opt/pihub-client/
 
-ID = $(cat device_id)
-HOSTNAME = $(cat /etc/hostname)
+pubkey=$(grep public keys.conf | awk '{print $2}')
+privkey=$(grep private keys.conf| awk '{print $2}')
+currtime=$(date +%s)
+vhash=$(echo -n "$pubkey$currtime$privkey" | sha256sum | sed 's/\s.*//')
 
-req_data = "\
-id=$ID&\
-"
+req_data="\
+public_key=$pubkey&\
+time=$currtime&\
+vhash=$vhash"
 
-response = $(curl -X POST -F $req_data http://pihub.site/api/device-update)
+response=$(curl -s -o /dev/null -w '%{http_code}' -X POST -d $req_data http://localhost:8000/api/device-update)
 
-if [ -n '$response' ]; then
-    device_id < '$response'
+if [ "$response" = "200" ]; then
+    echo Successfully sent update.
+    exit 0
 fi

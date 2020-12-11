@@ -1,12 +1,11 @@
 [Unit] 
-Description=A service that updates pihub.com with device info
+Description=the tracker for pihub.site
 
 [Service] 
 Type=simple 
 User=root
 
-ExecStart=/usr/bin/python3 /opt/pihub/scripts/update_pihub.py 
-ExecStartPost=/bin/echo "Sent update to pihub.com"
+ExecStart=/opt/pihub-client/scripts/update_pihub.sh
 
 TimeoutStopSec= 180 
 

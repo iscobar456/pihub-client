@@ -1,9 +1,10 @@
 [Unit]
 Description=Runs the pihub.service every 10 minutes
+Requires=pihub.service
 
 [Timer]
-OnCalendar=*:*/20
 Unit=pihub.service
+OnCalendar=*-*-* 05:00:00
 
 [Install]
 WantedBy=basic.target
