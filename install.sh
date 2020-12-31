@@ -39,8 +39,8 @@ verify_device() {
         exit 0
     else
         printf "\nSuccess! Your device is now verified.\n\n"
-        printf public $pubkey > /opt/pihub-client/keys.conf
-        printf private $privkey >> /opt/pihub-client/keys.conf
+        echo public $pubkey > /opt/pihub-client/keys.conf
+        echo private $privkey >> /opt/pihub-client/keys.conf
     fi
     start_services
 }
@@ -72,5 +72,7 @@ if [ -d "/opt/pihub-client" ]; then
     systemctl -q daemon-reload
     rm -r /opt/pihub-client
     printf "done.\n\n"
+    setup
+else
     setup
 fi
