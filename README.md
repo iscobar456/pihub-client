@@ -16,5 +16,4 @@ To stop sending updates to [pihub](http://pihub.site), run the following command
 To start updates again, replace `stop` and `disable` in the commands above with `start` and `enable`, respectively.
 
 ### Uninstall
-***Not yet implemented***
-To uninstall the pihub linux client, run `sudo <path_to_extracted_zip>/install.sh --remove`
+To uninstall the pihub client, run `sudo /opt/pihub-client/uninstall.sh`
